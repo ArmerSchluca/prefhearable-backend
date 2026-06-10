@@ -1,23 +1,12 @@
 const db = require("./db/db");
 const express = require("express");
+const userRoutes = require("./routes/user.routes");
+const { start } = require("./helper/start");
+
 const app = express();
-const port = 3000;
 
-async function start() {
-  try {
-    await db.testConnection();
+app.use(express.json());
 
-    app.listen(port, () => {
-      console.log(`Server running on ${port}`);
-    });
+app.use("/users", userRoutes);
 
-    app.get("/", (req, res) => {
-      res.send(`Server running on port ${port}`);
-    });
-  } catch (err) {
-    console.error("Server not started because DB is down");
-    process.exit(1);
-  }
-}
-
-start();
+start(app);

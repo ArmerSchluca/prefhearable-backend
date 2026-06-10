@@ -1,8 +1,8 @@
-CREATE DATABASE prefear;
+CREATE DATABASE prefhearable;
 
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  email VARCHAR(255) UNIQUE NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  age INT NOT NULL,
+  gender ENUM('male','female','diverse') NOT NULL,
+  diseases TEXT
 );
