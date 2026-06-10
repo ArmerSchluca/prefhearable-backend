@@ -36,21 +36,33 @@ Ensure you have [Node.js](https://nodejs.org/) and a running instance of [MariaD
 
 ### Installation & Run
 
-1. Clone this repository:
+1. Create directory:
+```bash
+mkdir Prefhearable
+cd Prefhearable
+```
+
+2. Clone repository:
 ```bash
 git clone https://git.rchw.de/Prefhearable/backend.git
 ```
 
-2. Create a new .env file on root level of the project and fill in the variables with proper values of your database instance:
+3. Setup project and dependencies:
 ```bash
-DB_HOST=
-DB_PORT=
-DB_USER=
-DB_PASSWORD=
-DATABASE=
+cd backend
+npm install
 ```
 
-3. Start the server:
+4. Create a new .env file on root level of the project and fill in the variables with proper values of your database instance:
+```bash
+DB_HOST=your_host
+DB_PORT=your_port
+DB_USER=your_user
+DB_PASSWORD=your_password
+DATABASE=your_database_name
+```
+
+5. Start the server:
 ```bash
 npm run dev
 ```
