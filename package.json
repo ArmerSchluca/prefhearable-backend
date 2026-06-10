@@ -1,10 +1,10 @@
 {
-  "name": "prefear_server",
+  "name": "prefhearable-backend",
   "version": "1.0.0",
-  "description": "Server for PREFEAR.",
+  "description": "",
   "repository": {
     "type": "git",
-    "url": "https://git.rchw.de/PREFEAR/server.git"
+    "url": "https://git.rchw.de/Prefhearable/backend.git"
   },
   "license": "ISC",
   "author": "Luca Reichow",
