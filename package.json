@@ -1,0 +1,19 @@
+{
+  "name": "prefear_server",
+  "version": "1.0.0",
+  "description": "Server for PREFEAR.",
+  "repository": {
+    "type": "git",
+    "url": "https://git.rchw.de/PREFEAR/server.git"
+  },
+  "license": "ISC",
+  "author": "Luca Reichow",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
