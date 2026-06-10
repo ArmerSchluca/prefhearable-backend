@@ -1,4 +1,8 @@
-# Prefhearable
+# Prefhearable (Server)
+
+<details>
+<summary><b>Expand for details on the project</b></summary>
+<br>
 
 > **Prefhearable** is a mobile data collection instrument developed to standardize the assessment of personal **hearing preferences** based on psychoacoustic and contextual data with special focus on health-related wellbeeing. 
 
@@ -6,8 +10,6 @@ This app serves as a large-scale crowdsourcing tool to build a comprehensive, st
 
 This repository contains the source code for the mobile application developed as part of a Bachelor's Thesis: 
 *"Entwicklung eines mobilen Erhebungsinstruments zur standardisierten Erfassung persönlicher Hörpräferenzen auf Basis psychoakustischer und kontextueller Daten"*.
-
----
 
 ## Purpose & Scope
 
@@ -19,8 +21,7 @@ To train robust machine learning models for auditory profiling, researchers requ
 * **Psychoacoustic Testing:** Seamless, user-friendly mobile audio tests to capture hearing characteristics.
 * **Contextual Data Harvesting:** Gathering situational data (e.g., environmental noise levels, user activity, or time of day) to understand *where* and *how* people listen.
 * **Standardized Dataset Creation:** Consolidating user inputs into a structured format ready for future big data and AI analysis.
-
----
+</details>
 
 ## Tech Stack & Architecture
 
@@ -37,19 +38,19 @@ Ensure you have [Node.js](https://nodejs.org/) and a running instance of [MariaD
 
 1. Clone this repository:
 ```bash
-git clone https://git.rchw.de/Prefhearable/server.git
+    git clone https://git.rchw.de/Prefhearable/server.git
 ```
 
 2. Create a new .env file on root level of the project and fill in the variables with proper values of your database instance:
 ```bash
-DB_HOST=
-DB_PORT=
-DB_USER=
-DB_PASSWORD=
-DATABASE=
+    DB_HOST=
+    DB_PORT=
+    DB_USER=
+    DB_PASSWORD=
+    DATABASE=
 ```
 
 3. Start the server:
 ```bash
-npm run dev
+    npm run dev
 ```
