@@ -36,7 +36,7 @@ Ensure you have [Node.js](https://nodejs.org/) and a running instance of [MariaD
 
 ### Installation & Run
 
-1. Create directory:
+1. Create directory if not already done:
 ```bash
 mkdir Prefhearable
 cd Prefhearable
