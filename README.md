@@ -38,7 +38,7 @@ Ensure you have [Node.js](https://nodejs.org/) and a running instance of [MariaD
 
 1. Clone this repository:
 ```bash
-git clone https://git.rchw.de/Prefhearable/server.git
+git clone https://git.rchw.de/Prefhearable/backend.git
 ```
 
 2. Create a new .env file on root level of the project and fill in the variables with proper values of your database instance:
