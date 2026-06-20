@@ -2,6 +2,15 @@ const surveyRepo = require("../repositories/survey.repository");
 const personalRepo = require("../repositories/personalData.repository");
 const contextRepo = require("../repositories/contextData.repository");
 
+/**
+ * Get all surveys for the currently resolved participant.
+ * 
+ * Expects `req.participant` to be set by authentication/resolve middleware.
+ * Returns all surveys belonging to this participant.
+ *
+ * @route GET /surveys
+ * @auth required (X-Participant-Id header via middleware)
+ */
 async function getAllSurveys(req, res) {
   try {
     const participant = req.participant;
@@ -13,6 +22,18 @@ async function getAllSurveys(req, res) {
   }
 }
 
+/**
+ * Stores personal survey data for a given survey.
+ *
+ * Expects:
+ * - surveyId in route params
+ * - validated payload in req.body
+ *
+ * Data is persisted in the personal_data table (1:1 with survey).
+ *
+ * @route POST /surveys/:surveyId/personal
+ * @auth required (X-Participant-Id header via middleware)
+ */
 async function submitPersonal(req, res) {
   try {
     const { surveyId } = req.params;
@@ -23,6 +44,20 @@ async function submitPersonal(req, res) {
   }
 }
 
+/**
+ * Stores contextual/environmental data for a given survey.
+ *
+ * Includes geolocation, environment, time-based and weather-related data.
+ *
+ * Expects:
+ * - surveyId in route params
+ * - validated payload in req.body
+ *
+ * Data is persisted in the contextual_data table (1:1 with survey).
+ *
+ * @route POST /surveys/:surveyId/context
+ * @auth required (X-Participant-Id header via middleware)
+ */
 async function submitContext(req, res) {
   try {
     const { surveyId } = req.params;
