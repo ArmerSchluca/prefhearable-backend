@@ -77,3 +77,15 @@ CREATE TABLE who5_responses (
 
   FOREIGN KEY (survey_id) REFERENCES surveys(id)
 );
+
+CREATE TABLE participant_consents (
+  participant_id CHAR(36) PRIMARY KEY,
+
+  consent_storage BOOLEAN NOT NULL,
+  consent_gps BOOLEAN NOT NULL,
+  consent_external_weather BOOLEAN NOT NULL,
+
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+  FOREIGN KEY (participant_id) REFERENCES participants(id)
+);
