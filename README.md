@@ -62,11 +62,11 @@ npm install
 4. Create a new .env file on root level of the project and fill in the variables with proper values of your database instance:
 
 ```bash
-DB_HOST=your_host
-DB_PORT=your_port
-DB_USER=your_user
-DB_PASSWORD=your_password
-DATABASE=your_database_name
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=username
+DB_PASSWORD=changeme123
+DATABASE=prefhearable
 ```
 
 5. Start the server:
