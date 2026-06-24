@@ -4,7 +4,6 @@ const db = require("./config/db");
 const express = require("express");
 const surveyRoutes = require("./routes/survey.routes");
 const participantRoutes = require("./routes/participant.routes");
-const health = require("./routes/health.routes");
 const app = express();
 const swaggerSpec = require("./config/swagger");
 const cors = require("cors");
