@@ -29,6 +29,19 @@ async function createParticipant(req, res) {
   }
 }
 
+/**
+ * Returns the currently authenticated participant.
+ *
+ * Expects req.participant to be populated by resolveParticipant middleware.
+ *
+ * @route GET /participants/me
+ * @auth required (X-Participant-Id header)
+ */
+async function getParticipant(req, res) {
+  res.json(req.participant);
+}
+
 module.exports = {
   createParticipant,
+  getParticipant,
 };
