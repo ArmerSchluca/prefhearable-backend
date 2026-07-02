@@ -1,5 +1,12 @@
 CREATE DATABASE IF NOT EXISTS prefhearable;
 
+CREATE TABLE device_information (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  participant_id CHAR(36) NOT NULL,
+
+  FOREIGN KEY (participant_id) REFERENCES participants(id)
+);
+
 CREATE TABLE participants (
   id CHAR(36) PRIMARY KEY,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -15,7 +22,6 @@ CREATE TABLE surveys (
   survey_version INT DEFAULT 1,
 
   FOREIGN KEY (participant_id) REFERENCES participants(id)
-    ON DELETE CASCADE
 );
 
 CREATE TABLE personal_data (
@@ -79,8 +85,7 @@ CREATE TABLE ccsm_audiotest_responses (
   CHECK (annoyance BETWEEN 0 AND 50),
   CHECK (sharpness BETWEEN 0 AND 50),
 
-  FOREIGN KEY (survey_id) REFERENCES surveys(id)
-    ON DELETE CASCADE,
+  FOREIGN KEY (survey_id) REFERENCES surveys(id),
 
   UNIQUE (survey_id, stimulus)
 );
@@ -102,7 +107,6 @@ CREATE TABLE eq5d5l_responses (
   CHECK (anxiety BETWEEN 1 AND 5),
 
   FOREIGN KEY (survey_id) REFERENCES surveys(id)
-    ON DELETE CASCADE
 );
 
 CREATE TABLE who5_responses (
@@ -122,5 +126,4 @@ CREATE TABLE who5_responses (
   CHECK (life_interest BETWEEN 0 AND 5),
 
   FOREIGN KEY (survey_id) REFERENCES surveys(id)
-    ON DELETE CASCADE
 );
