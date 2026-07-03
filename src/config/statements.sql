@@ -4,6 +4,10 @@ CREATE TABLE device_information (
   id INT AUTO_INCREMENT PRIMARY KEY,
   participant_id CHAR(36) NOT NULL,
 
+  operating_system VARCHAR(50),
+  model VARCHAR(100),
+  audio_device VARCHAR(100),
+
   FOREIGN KEY (participant_id) REFERENCES participants(id)
 );
 
