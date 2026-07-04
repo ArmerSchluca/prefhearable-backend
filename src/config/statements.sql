@@ -1,5 +1,10 @@
 CREATE DATABASE IF NOT EXISTS prefhearable;
 
+CREATE TABLE participants (
+  id CHAR(36) PRIMARY KEY,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE TABLE device_information (
   id INT AUTO_INCREMENT PRIMARY KEY,
   participant_id CHAR(36) NOT NULL,
@@ -9,11 +14,6 @@ CREATE TABLE device_information (
   audio_device VARCHAR(100),
 
   FOREIGN KEY (participant_id) REFERENCES participants(id)
-);
-
-CREATE TABLE participants (
-  id CHAR(36) PRIMARY KEY,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE surveys (
