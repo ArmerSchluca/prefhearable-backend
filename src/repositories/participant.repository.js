@@ -1,7 +1,7 @@
 const db = require("../config/db");
 
 async function create(id) {
-  await db.query("INSERT INTO participants (id) VALUES (?)", [id]);
+  await db.query(`INSERT INTO participants (id) VALUES (?)`, [id]);
 }
 
 async function findById(id) {

@@ -5,7 +5,6 @@ const contextRepo = require("../repositories/contextData.repository");
 async function createSurvey(req, res) {
   try {
     const survey = await surveyRepo.create(req.participant.id);
-
     res.status(201).json(survey);
   } catch (err) {
     console.error(err);

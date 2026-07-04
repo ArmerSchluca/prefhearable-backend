@@ -12,7 +12,7 @@ const pool = mariadb.createPool({
 async function establishConnection() {
   try {
     const conn = await pool.getConnection();
-    
+
     const result = await conn.query("SELECT 1 AS ok");
 
     console.log("DB connected:", result);

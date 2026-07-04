@@ -19,8 +19,8 @@ async function savePersonalData(surveyId, data) {
       data.allergies,
       data.diseases,
       data.hearing_aid,
-      data.hearing_aid_since
-    ]
+      data.hearing_aid_since,
+    ],
   );
 }
 

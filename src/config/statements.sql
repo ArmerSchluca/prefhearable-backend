@@ -20,8 +20,9 @@ CREATE TABLE surveys (
   id INT AUTO_INCREMENT PRIMARY KEY,
   participant_id CHAR(36) NOT NULL,
 
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  finished_at TIMESTAMP NULL,
+  started_at TIMESTAMP null,
+  -- Submit im Client = Abschluss der Umfrage = Creation in DB
+  finished_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
   survey_version INT DEFAULT 1,
 

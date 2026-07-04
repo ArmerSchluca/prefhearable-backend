@@ -15,8 +15,8 @@ async function saveContextData(surveyId, data) {
       data.season,
       data.noise_level,
       data.time_of_day,
-      data.weather
-    ]
+      data.weather,
+    ],
   );
 }
 
