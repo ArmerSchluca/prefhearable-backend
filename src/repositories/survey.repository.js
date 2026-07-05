@@ -7,7 +7,7 @@ async function findByParticipantId(participantId) {
 }
 
 async function create(participantId) {
-  const [result] = await db.query(
+  const result = await db.query(
     `INSERT INTO surveys (participant_id) VALUES (?)`,
     [participantId],
   );

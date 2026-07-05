@@ -18,7 +18,7 @@ app.use((req, res, next) => {
 });
 
 // Health Check
-app.use("/", (req, res) => res.status(200).json({ status: "ok" }));
+app.get("/health", (req, res) => res.status(200).json({ status: "ok" }));
 
 // Routes
 app.use("/participants", participantRoutes);
