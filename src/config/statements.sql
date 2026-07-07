@@ -52,14 +52,22 @@ CREATE TABLE context_data (
   id INT AUTO_INCREMENT PRIMARY KEY,
   survey_id INT NOT NULL UNIQUE,
 
-  latitude DECIMAL(10, 8),
-  longitude DECIMAL(11, 8),
+  latitude DECIMAL(10,8),
+  longitude DECIMAL(11,8),
+
   location_type ENUM('indoor', 'outdoor'),
-  climate_zone VARCHAR(50),
+
   season ENUM('spring', 'summer', 'autumn', 'winter'),
+
   noise_level DECIMAL(5,2),
-  time_of_day TIME,
-  weather VARCHAR(50),
+
+  timestamp DATETIME,
+
+  weather_description VARCHAR(50),
+  temperature DECIMAL(4,1),
+  humidity DECIMAL(5,2),
+  wind_speed DECIMAL(5,2),
+  uv_index DECIMAL(3,1),
 
   FOREIGN KEY (survey_id) REFERENCES surveys(id)
 );
