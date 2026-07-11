@@ -5,28 +5,28 @@ CREATE TABLE participants (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE device_information (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  participant_id CHAR(36) NOT NULL,
-
-  operating_system VARCHAR(50),
-  model VARCHAR(100),
-  audio_device VARCHAR(100),
-
-  FOREIGN KEY (participant_id) REFERENCES participants(id)
-);
-
 CREATE TABLE surveys (
   id INT AUTO_INCREMENT PRIMARY KEY,
   participant_id CHAR(36) NOT NULL,
 
-  started_at TIMESTAMP null,
-  -- Submit im Client = Abschluss der Umfrage = Creation in DB
-  finished_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  survey_version VARCHAR(20) NOT NULL,
 
-  survey_version INT DEFAULT 1,
+  started_at DATETIME NOT NULL,
+  finished_at DATETIME NOT NULL,
 
   FOREIGN KEY (participant_id) REFERENCES participants(id)
+);
+
+CREATE TABLE device_information (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  survey_id INT NOT NULL UNIQUE,
+
+  operating_system VARCHAR(50),
+  model VARCHAR(100),
+  app_version VARCHAR(20),
+
+  FOREIGN KEY (survey_id) REFERENCES surveys(id)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE personal_data (
@@ -35,15 +35,42 @@ CREATE TABLE personal_data (
 
   age INT,
   gender ENUM('male', 'female', 'diverse'),
+
+  occupation ENUM(  
+  'student',
+  'office',
+  'manualLabor',
+  'healthcare',
+  'education',
+  'unemployed',
+  'retired',
+  'other'
+  ),
+
+  hearing_aid ENUM('both', 'leftEar', 'rightEar', 'none'),
+  hearing_aid_duration ENUM(  
+    'lessThan6Months',
+    'sixToTwelveMonths',
+    'oneToTwoYears',
+    'twoToFiveYears',
+    'fiveToTenYears',
+    'moreThanTenYears'
+  ),
+
   residential_area ENUM('urban', 'suburban', 'rural'),
-  occupation VARCHAR(100),
-  sport_type VARCHAR(100),
-  sport_frequency INT,
-  diet ENUM('omnivore', 'vegetarian', 'vegan'),
+
+  physical_activity_type ENUM (
+    'endurance', 'strength', 'combined', 'team', 'other', 'none'
+  ),
+  physical_activity_frequency ENUM (
+    'oneToTwoPerWeek','threeToFourPerWeek','fivePlusPerWeek'
+  ),
+  physical_activity_duration SMALLINT,
+
+  diet ENUM('omnivore', 'vegetarian', 'vegan', 'other'),
+
   allergies TEXT,
   diseases TEXT,
-  hearing_aid ENUM('none', 'left', 'right', 'both'),
-  hearing_aid_since DATE,
 
   FOREIGN KEY (survey_id) REFERENCES surveys(id)
 );
@@ -76,13 +103,9 @@ CREATE TABLE ccsm_audiotest_responses (
   id INT AUTO_INCREMENT PRIMARY KEY,
   survey_id INT NOT NULL,
 
-  stimulus ENUM(
-    'barking',
-    'lawnmower',
-    'church_bells',
-    'white_noise',
-    'synthetic_1'
-  ) NOT NULL,
+  sound_identifier VARCHAR(255) NOT NULL,
+
+  audio_device VARCHAR(100),
 
   loudness INT NOT NULL,
   roughness INT NOT NULL,
@@ -90,17 +113,9 @@ CREATE TABLE ccsm_audiotest_responses (
   annoyance INT NOT NULL,
   sharpness INT NOT NULL,
 
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
-  CHECK (loudness BETWEEN 0 AND 50),
-  CHECK (roughness BETWEEN 0 AND 50),
-  CHECK (tonality BETWEEN 0 AND 50),
-  CHECK (annoyance BETWEEN 0 AND 50),
-  CHECK (sharpness BETWEEN 0 AND 50),
-
   FOREIGN KEY (survey_id) REFERENCES surveys(id),
 
-  UNIQUE (survey_id, stimulus)
+  UNIQUE (survey_id, sound_identifier)
 );
 
 CREATE TABLE eq5d5l_responses (
@@ -112,12 +127,6 @@ CREATE TABLE eq5d5l_responses (
   usual_activities INT NOT NULL,
   pain INT NOT NULL,
   anxiety INT NOT NULL,
-
-  CHECK (mobility BETWEEN 1 AND 5),
-  CHECK (self_care BETWEEN 1 AND 5),
-  CHECK (usual_activities BETWEEN 1 AND 5),
-  CHECK (pain BETWEEN 1 AND 5),
-  CHECK (anxiety BETWEEN 1 AND 5),
 
   FOREIGN KEY (survey_id) REFERENCES surveys(id)
 );
@@ -131,12 +140,6 @@ CREATE TABLE who5_responses (
   vitality INT NOT NULL,
   restedness INT NOT NULL,
   life_interest  INT NOT NULL,
-
-  CHECK (positive_affect BETWEEN 0 AND 5),
-  CHECK (calmness BETWEEN 0 AND 5),
-  CHECK (vitality BETWEEN 0 AND 5),
-  CHECK (restedness BETWEEN 0 AND 5),
-  CHECK (life_interest BETWEEN 0 AND 5),
 
   FOREIGN KEY (survey_id) REFERENCES surveys(id)
 );

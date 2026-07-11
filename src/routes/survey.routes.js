@@ -3,6 +3,5 @@ const router = express.Router();
 const { resolveParticipant } = require("../middleware/securityLayer");
 const controller = require("../controllers/survey.controller");
 
-router.post("/", resolveParticipant, controller.createSurvey);
-
+router.post("/", resolveParticipant, controller.submitSurvey);
 module.exports = router;

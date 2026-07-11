@@ -1,19 +1,24 @@
 const surveyRepo = require("../repositories/survey.repository");
-const personalRepo = require("../repositories/personalData.repository");
-const contextRepo = require("../repositories/contextData.repository");
 
-async function createSurvey(req, res) {
+async function submitSurvey(req, res) {
   try {
-    const survey = await surveyRepo.create(req.participant.id);
-    res.status(201).json(survey);
+    const participantId = req.participant.id;
+    console.dir(req.body, { depth: null });
+    const surveyId = await surveyRepo.submit(participantId, req.body);
+
+    res.status(201).json({
+      surveyId: Number(surveyId),
+      message: "Survey successfully persisted.",
+    });
   } catch (err) {
     console.error(err);
+
     res.status(500).json({
-      message: "Error creating survey",
+      message: "Failed to persist survey.",
     });
   }
 }
 
 module.exports = {
-  createSurvey,
+  submitSurvey,
 };
