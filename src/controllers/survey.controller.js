@@ -19,6 +19,23 @@ async function submitSurvey(req, res) {
   }
 }
 
+async function getSurveys(req, res) {
+  try {
+    const participantId = req.participant.id;
+
+    const surveys = await surveyRepo.getSurveys(participantId);
+
+    res.status(200).json(surveys);
+  } catch (err) {
+    console.error(err);
+
+    res.status(500).json({
+      message: "Failed to load surveys.",
+    });
+  }
+}
+
 module.exports = {
   submitSurvey,
+  getSurveys,
 };

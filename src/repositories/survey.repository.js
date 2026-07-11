@@ -12,6 +12,24 @@ async function findByParticipantId(participantId) {
   ]);
 }
 
+async function getSurveys(participantId) {
+  const surveys = await db.query(
+    `
+    SELECT
+      id,
+      survey_version,
+      started_at,
+      finished_at
+    FROM surveys
+    WHERE participant_id = ?
+    ORDER BY finished_at DESC
+    `,
+    [participantId],
+  );
+
+  return surveys;
+}
+
 async function submit(participantId, surveyJson) {
   const survey = Survey.fromJson(surveyJson);
 
@@ -28,9 +46,17 @@ async function submit(participantId, surveyJson) {
 
     await saveContextData(connection, surveyId, survey.contextData);
 
-    await saveEq5dResponses(connection, surveyId, survey.questionnaireData.eq5d);
+    await saveEq5dResponses(
+      connection,
+      surveyId,
+      survey.questionnaireData.eq5d,
+    );
 
-    await saveWho5Responses(connection, surveyId, survey.questionnaireData.who5);
+    await saveWho5Responses(
+      connection,
+      surveyId,
+      survey.questionnaireData.who5,
+    );
 
     await saveCcsmResponses(connection, surveyId, survey.audioTestData.ccsm);
 
@@ -251,4 +277,4 @@ async function saveCcsmResponses(connection, surveyId, ccsm) {
   }
 }
 
-module.exports = { submit };
+module.exports = { submit, getSurveys };
