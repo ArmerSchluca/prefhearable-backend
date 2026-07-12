@@ -1,41 +1,50 @@
 # Prefhearable (Server)
 
-<details>
-<summary><b>Expand for details on the project</b></summary>
-<br>
+This repository contains the backend of the Prefhearable project.
 
-> **Prefhearable** is a mobile data collection instrument developed to standardize the assessment of personal **hearing preferences** based on psychoacoustic and contextual data with special focus on health-related wellbeeing.
-
-This app serves as a large-scale crowdsourcing tool to build a comprehensive, standardized dataset for audiology and hearing research. The long-term goal of this dataset is to enable advanced **Auditory Profiling** using Machine Learning.
-
-This repository contains the source code for the mobile application developed as part of a Bachelor's Thesis:
-_"Entwicklung eines mobilen Erhebungsinstruments zur standardisierten Erfassung persönlicher Hörpräferenzen auf Basis psychoakustischer und kontextueller Daten"_.
-
-## Purpose & Scope
-
-⚠️ **Note:** _Prefhearable is strictly a data collection and crowdsourcing tool. It does not perform data analysis or machine learning evaluation on the device._
-
-To train robust machine learning models for auditory profiling, researchers require a vast amount of diverse data. This app bridges the gap between lab research and the real world by allowing users to contribute data seamlessly via their smartphones.
-
-### Key Features of the App:
-
-- **Psychoacoustic Testing:** Seamless, user-friendly mobile audio tests to capture hearing characteristics.
-- **Contextual Data Harvesting:** Gathering situational data (e.g., environmental noise levels, user activity, or time of day) to understand _where_ and _how_ people listen.
-- **Standardized Dataset Creation:** Consolidating user inputs into a structured format ready for future big data and AI analysis.
-</details>
+For a detailed project description and the corresponding Flutter client, see the
+[Prefhearable Frontend](https://github.com/ArmerSchluca/prefhearable-frontend).
 
 ## Tech Stack & Architecture
 
 - **Backend Framework:** Node.js with Express.js
 - **Database:** MariaDB
 - **API Style:** REST API
-- **API Documentation:** SwaggerUI -> Aufrufbar über http://localhost:3000/api-docs
 
 ## Setup
 
 ### Prerequisites
 
-Ensure you have [Node.js](https://nodejs.org/) and a running instance of [MariaDB](https://mariadb.org/) installed.
+Ensure you have [Node.js](https://nodejs.org/) installed and an instance of [MariaDB](https://mariadb.org/) running.
+
+For development, the following `docker-compose.yml` was used to provision the MariaDB database and phpMyAdmin:
+```yaml
+services:
+  mariadb:
+    image: mariadb:latest
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: prefhearable
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mariadb
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - "8080:80"
+    depends_on:
+      - mariadb
+```
 
 ### Installation & Run
 
@@ -49,7 +58,7 @@ cd Prefhearable
 2. Clone repository:
 
 ```bash
-git clone https://git.rchw.de/Prefhearable/backend.git
+git clone https://github.com/ArmerSchluca/prefhearable-backend.git
 ```
 
 3. Setup project and dependencies:
@@ -69,8 +78,27 @@ DB_PASSWORD=changeme123
 DATABASE=prefhearable
 ```
 
-5. Start the server:
+5. Initialize the database:
+
+Execute the SQL statements contained in `src/config/db.sql` using your MariaDB instance.
+
+6. Start the server:
 
 ```bash
 npm run dev
+```
+
+## External Services
+
+The backend uses the following external services:
+
+- MariaDB
+- Open-Meteo API (weather information)
+
+## API Documentation
+
+After starting the server, the OpenAPI documentation is available via Swagger UI at:
+
+```text
+http://localhost:3000/api-docs
 ```
