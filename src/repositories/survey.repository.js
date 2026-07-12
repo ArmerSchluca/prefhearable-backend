@@ -17,12 +17,12 @@ async function getSurveys(participantId) {
     `
     SELECT
       id,
-      survey_version,
-      started_at,
-      finished_at
+      survey_version AS surveyVersion,
+      started_at AS startedAt,
+      finished_at AS finishedAt
     FROM surveys
     WHERE participant_id = ?
-    ORDER BY finished_at DESC
+    ORDER BY finished_at DESC;
     `,
     [participantId],
   );

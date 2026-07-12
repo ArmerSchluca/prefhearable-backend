@@ -7,6 +7,7 @@ const pool = mariadb.createPool({
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DATABASE,
+  dateStrings: true, // Damit die Zeitzone nicht UTC ist
 });
 
 async function establishConnection() {
