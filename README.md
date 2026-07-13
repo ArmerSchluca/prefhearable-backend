@@ -93,7 +93,7 @@ npm run dev
 The backend uses the following external services:
 
 - MariaDB
-- Open-Meteo API (weather information)
+- Open-Meteo API (weather forecast and air quality)
 
 ## API Documentation
 
