@@ -156,13 +156,20 @@ async function saveContextData(connection, surveyId, context) {
       season,
       noise_level,
       timestamp,
+
       weather_description,
       temperature,
       humidity,
       wind_speed,
-      uv_index
+      uv_index,
+
+      european_aqi,
+      pm25,
+      pm10,
+      nitrogen_dioxide,
+      ozone
     )
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `,
     [
       surveyId,
@@ -172,11 +179,18 @@ async function saveContextData(connection, surveyId, context) {
       context.season,
       context.noiseLevel,
       context.timestamp,
+
       context.weather.description,
       context.weather.temperature,
       context.weather.humidity,
       context.weather.windSpeed,
       context.weather.uvIndex,
+
+      context.airQuality.europeanAqi,
+      context.airQuality.pm25,
+      context.airQuality.pm10,
+      context.airQuality.nitrogenDioxide,
+      context.airQuality.ozone,
     ],
   );
 }

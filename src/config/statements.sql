@@ -96,6 +96,12 @@ CREATE TABLE context_data (
   wind_speed DECIMAL(5,2),
   uv_index DECIMAL(3,1),
 
+  european_aqi DECIMAL(5,2),
+  pm25 DECIMAL(6,2),
+  pm10 DECIMAL(6,2),
+  nitrogen_dioxide DECIMAL(6,2),
+  ozone DECIMAL(6,2),
+
   FOREIGN KEY (survey_id) REFERENCES surveys(id)
 );
 
