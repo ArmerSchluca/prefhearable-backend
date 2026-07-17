@@ -56,6 +56,13 @@ CREATE TABLE personal_data (
     'fiveToTenYears',
     'moreThanTenYears'
   ),
+  hearing_aid_type ENUM (
+    'behindTheEar',
+    'inTheEar',
+    'cochlearImplant',
+    'boneConduction',
+    'other'
+  ),
 
   residential_area ENUM('urban', 'suburban', 'rural'),
 

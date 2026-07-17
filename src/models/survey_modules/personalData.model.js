@@ -10,6 +10,8 @@ class PersonalData {
 
     this.hearingAidDuration = data.hearingAidDuration;
 
+    this.hearingAidType = data.hearingAidType;
+
     this.residentialArea = data.residentialArea;
 
     this.physicalActivityType = data.physicalActivityType;
