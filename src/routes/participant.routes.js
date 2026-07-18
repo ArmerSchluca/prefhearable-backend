@@ -46,4 +46,38 @@ router.post("/", controller.createParticipant);
  */
 router.get("/me", resolveParticipant, controller.getParticipant);
 
+/**
+ * @swagger
+ * /participants/me/personal-data:
+ *   put:
+ *     summary: Update personal data of the current participant
+ *     tags:
+ *       - Participants
+ *     parameters:
+ *       - in: header
+ *         name: X-Participant-Id
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/PersonalData'
+ *     responses:
+ *       204:
+ *         description: Personal data updated.
+ *       400:
+ *         description: Invalid request.
+ *       404:
+ *         description: Participant not found.
+ */
+router.put(
+  "/me/personal-data",
+  resolveParticipant,
+  controller.updatePersonalData,
+);
+
 module.exports = router;

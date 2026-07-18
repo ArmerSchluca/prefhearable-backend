@@ -2,7 +2,53 @@ CREATE DATABASE IF NOT EXISTS prefhearable;
 
 CREATE TABLE participants (
   id CHAR(36) PRIMARY KEY,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+  age INT,
+  gender ENUM('male', 'female', 'diverse'),
+
+  occupation ENUM(  
+  'student',
+  'office',
+  'manualLabor',
+  'healthcare',
+  'education',
+  'unemployed',
+  'retired',
+  'other'
+  ),
+
+  hearing_aid ENUM('both', 'leftEar', 'rightEar', 'none'),
+  hearing_aid_duration ENUM(  
+    'lessThan6Months',
+    'sixToTwelveMonths',
+    'oneToTwoYears',
+    'twoToFiveYears',
+    'fiveToTenYears',
+    'moreThanTenYears'
+  ),
+  hearing_aid_type ENUM (
+    'behindTheEar',
+    'inTheEar',
+    'cochlearImplant',
+    'boneConduction',
+    'other'
+  ),
+
+  residential_area ENUM('urban', 'suburban', 'rural'),
+
+  physical_activity_type ENUM (
+    'endurance', 'strength', 'combined', 'team', 'other', 'none'
+  ),
+  physical_activity_frequency ENUM (
+    'oneToTwoPerWeek','threeToFourPerWeek','fivePlusPerWeek'
+  ),
+  physical_activity_duration SMALLINT,
+
+  diet ENUM('omnivore', 'vegetarian', 'vegan', 'other'),
+
+  allergies TEXT,
+  diseases TEXT
 );
 
 CREATE TABLE surveys (

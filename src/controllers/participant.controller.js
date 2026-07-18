@@ -21,7 +21,24 @@ async function getParticipant(req, res) {
   res.json(req.participant);
 }
 
+async function updatePersonalData(req, res) {
+  try {
+    const participantId = req.participant.id;
+
+    await participantRepo.updatePersonalData(participantId, req.body);
+
+    res.status(204).send();
+  } catch (err) {
+    console.error(err);
+
+    res.status(500).json({
+      message: "Failed to update personal data.",
+    });
+  }
+}
+
 module.exports = {
   createParticipant,
   getParticipant,
+  updatePersonalData,
 };
