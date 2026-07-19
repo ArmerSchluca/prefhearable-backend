@@ -12,6 +12,8 @@ class PersonalData {
 
     this.hearingAidType = data.hearingAidType;
 
+    this.hearingImpairment = data.hearingImpairment;
+
     this.residentialArea = data.residentialArea;
 
     this.physicalActivityType = data.physicalActivityType;

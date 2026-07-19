@@ -117,6 +117,7 @@ async function savePersonalData(connection, surveyId, personal) {
       hearing_aid,
       hearing_aid_duration,
       hearing_aid_type,
+      hearing_impairment,
       residential_area,
       physical_activity_type,
       physical_activity_intensity,
@@ -126,7 +127,7 @@ async function savePersonalData(connection, surveyId, personal) {
       allergies,
       diseases
     )
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `,
     [
       surveyId,
@@ -136,6 +137,7 @@ async function savePersonalData(connection, surveyId, personal) {
       personal.hearingAided,
       personal.hearingAidDuration,
       personal.hearingAidType,
+      personal.hearingImpairment,
       personal.residentialArea,
       personal.physicalActivityType,
       personal.physicalActivityIntensity,

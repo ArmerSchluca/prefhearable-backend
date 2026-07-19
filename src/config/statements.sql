@@ -34,6 +34,7 @@ CREATE TABLE participants (
     'boneConduction',
     'other'
   ),
+  hearing_impairment TEXT,
 
   residential_area ENUM('urban', 'suburban', 'rural'),
 
@@ -112,6 +113,7 @@ CREATE TABLE personal_data (
     'boneConduction',
     'other'
   ),
+  hearing_impairment TEXT,
 
   residential_area ENUM('urban', 'suburban', 'rural'),
 
