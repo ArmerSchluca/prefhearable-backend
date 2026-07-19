@@ -7,7 +7,31 @@ async function create(id) {
 async function findById(id) {
   const rows = await db.query(`SELECT * FROM participants WHERE id = ?`, [id]);
 
-  return rows[0] || null;
+  if (rows.length === 0) {
+    return null;
+  }
+
+  const row = rows[0];
+
+  return {
+    id: row.id,
+    personalData: {
+      age: row.age,
+      gender: row.gender,
+      occupation: row.occupation,
+      hearingAided: row.hearing_aid,
+      hearingAidDuration: row.hearing_aid_duration,
+      hearingAidType: row.hearing_aid_type,
+      residentialArea: row.residential_area,
+      physicalActivityType: row.physical_activity_type,
+      physicalActivityIntensity: row.physical_activity_intensity,
+      physicalActivityFrequency: row.physical_activity_frequency,
+      physicalActivityDuration: row.physical_activity_duration,
+      diet: row.diet,
+      allergies: row.allergies,
+      diseases: row.diseases,
+    },
+  };
 }
 
 async function updatePersonalData(participantId, personalData) {
@@ -23,6 +47,7 @@ async function updatePersonalData(participantId, personalData) {
       hearing_aid_type = ?,
       residential_area = ?,
       physical_activity_type = ?,
+      physical_activity_intensity = ?,
       physical_activity_frequency = ?,
       physical_activity_duration = ?,
       diet = ?,
@@ -39,6 +64,7 @@ async function updatePersonalData(participantId, personalData) {
       personalData.hearingAidType,
       personalData.residentialArea,
       personalData.physicalActivityType,
+      personalData.physicalActivityIntensity,
       personalData.physicalActivityFrequency,
       personalData.physicalActivityDuration,
       personalData.diet,

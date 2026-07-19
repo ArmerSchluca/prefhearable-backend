@@ -16,6 +16,8 @@ class PersonalData {
 
     this.physicalActivityType = data.physicalActivityType;
 
+    this.physicalActivityIntensity = data.physicalActivityIntensity;
+
     this.physicalActivityFrequency = data.physicalActivityFrequency;
 
     this.physicalActivityDuration = data.physicalActivityDuration;

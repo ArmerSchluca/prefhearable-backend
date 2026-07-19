@@ -18,7 +18,14 @@ async function createParticipant(req, res) {
 }
 
 async function getParticipant(req, res) {
+  console.dir(req.participant, { depth: null });
   res.json(req.participant);
+}
+
+async function getPersonalData(req, res) {
+  res.json(req.participant.personalData);
+  // Request in der Konsole anzeigen
+  console.dir(req.body, { depth: null });
 }
 
 async function updatePersonalData(req, res) {
@@ -26,7 +33,8 @@ async function updatePersonalData(req, res) {
     const participantId = req.participant.id;
 
     await participantRepo.updatePersonalData(participantId, req.body);
-
+    // Request in der Konsole anzeigen
+    console.dir(req.body, { depth: null });
     res.status(204).send();
   } catch (err) {
     console.error(err);
@@ -40,5 +48,6 @@ async function updatePersonalData(req, res) {
 module.exports = {
   createParticipant,
   getParticipant,
+  getPersonalData,
   updatePersonalData,
 };

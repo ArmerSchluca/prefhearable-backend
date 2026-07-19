@@ -38,7 +38,10 @@ CREATE TABLE participants (
   residential_area ENUM('urban', 'suburban', 'rural'),
 
   physical_activity_type ENUM (
-    'endurance', 'strength', 'combined', 'team', 'other', 'none'
+    'aerobic', 'resistance', 'flexibility', 'team', 'other', 'none'
+  ),
+  physical_activity_intensity ENUM (
+    'light', 'moderate', 'vigorous'
   ),
   physical_activity_frequency ENUM (
     'oneToTwoPerWeek','threeToFourPerWeek','fivePlusPerWeek'
@@ -113,7 +116,10 @@ CREATE TABLE personal_data (
   residential_area ENUM('urban', 'suburban', 'rural'),
 
   physical_activity_type ENUM (
-    'endurance', 'strength', 'combined', 'team', 'other', 'none'
+    'aerobic', 'resistance', 'flexibility', 'team', 'other', 'none'
+  ),
+  physical_activity_intensity ENUM (
+    'light', 'moderate', 'vigorous'
   ),
   physical_activity_frequency ENUM (
     'oneToTwoPerWeek','threeToFourPerWeek','fivePlusPerWeek'
