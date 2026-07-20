@@ -13,6 +13,9 @@ CREATE TABLE participants (
   'manualLabor',
   'healthcare',
   'education',
+  'publicSafety',
+  'transportation',
+  'service',
   'unemployed',
   'retired',
   'other'
@@ -39,7 +42,7 @@ CREATE TABLE participants (
   residential_area ENUM('urban', 'suburban', 'rural'),
 
   physical_activity_type ENUM (
-    'aerobic', 'resistance', 'flexibility', 'team', 'other', 'none'
+    'aerobic', 'resistance','mixed', 'flexibility', 'team', 'other', 'none'
   ),
   physical_activity_intensity ENUM (
     'light', 'moderate', 'vigorous'
@@ -92,6 +95,9 @@ CREATE TABLE personal_data (
   'manualLabor',
   'healthcare',
   'education',
+  'publicSafety',
+  'transportation',
+  'service',
   'unemployed',
   'retired',
   'other'
@@ -118,7 +124,7 @@ CREATE TABLE personal_data (
   residential_area ENUM('urban', 'suburban', 'rural'),
 
   physical_activity_type ENUM (
-    'aerobic', 'resistance', 'flexibility', 'team', 'other', 'none'
+    'aerobic', 'resistance', 'mixed', 'flexibility', 'team', 'other', 'none'
   ),
   physical_activity_intensity ENUM (
     'light', 'moderate', 'vigorous'
